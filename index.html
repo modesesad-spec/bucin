@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VALENTINE SPECIAL - HANZ GPT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Background floating hearts */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 30px;
+            animation: floatAround 15s linear infinite;
+        }
+        
+        @keyframes floatAround {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 25px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 105, 180, 0.5) inset;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 10;
+            margin: 20px 0;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #FFD700, #FF1493, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px #FF1493); }
+            50% { filter: drop-shadow(0 0 20px #FF69B4); }
+        }
+        
+        .header .date {
+            color: white;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        
+        /* Profile */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255, 105, 180, 0.5);
+        }
+        
+        .profile-pic {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            border: 3px solid white;
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-info .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .profile-info .username {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .profile-info .status {
+            color: #FFD700;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        /* FOTO UTAMA - YANG LU MAU PASANG */
+        .foto-utama-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .foto-utama {
+            width: 100%;
+            border-radius: 40px;
+            border: 5px solid #FF1493;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.7);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: linear-gradient(45deg, #FF1493, #FFD700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .foto-utama:hover {
+            transform: scale(1.02);
+        }
+        
+        .foto-utama img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .foto-caption {
+            color: white;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            background: rgba(255,20,147,0.3);
+            padding: 8px;
+            border-radius: 50px;
+        }
+        
+        /* FITUR BARU: TOMBOL WA DAN SHARE */
+        .fitur-baru-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 30px 0;
+        }
+        
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            border: 2px solid white;
+            transition: transform 0.2s;
+        }
+        
+        .btn-wa:hover {
+            transform: scale(1.02);
+            background: #128C7E;
+        }
+        
+        .btn-wa-share {
+            background: #128C7E;
+        }
+        
+        .btn-wa-share:hover {
+            background: #25D366;
+        }
+        
+        .btn-download {
+            background: linear-gradient(45deg, #FF1493, #FF4500);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid #FFD700;
+            padding: 15px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Popup */
+        .popup-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 40px;
+            z-index: 200;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 50px #FF1493;
+            text-align: center;
+            display: none;
+            max-width: 80%;
+        }
+        
+        .popup-message.show {
+            display: block;
+            animation: popIn 0.3s;
+        }
+        
+        @keyframes popIn {
+            from { transform: translate(-50%, -50%) scale(0); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        .popup-content {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .popup-close {
+            background: #FF1493;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        /* QR Code Virtual */
+        .qr-section {
+            background: white;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #FF1493, #FFD700);
+            margin: 0 auto 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 3px solid #333;
+        }
+        
+        .typing-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #FF1493;
+        }
+        
+        .typing-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .typing-text {
+            font-size: 1.3rem;
+            color: white;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 4px;
+            height: 30px;
+            background-color: #FF1493;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .change-text-btn {
+            background: linear-gradient(45deg, #FF1493, #FF4500);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0 20px 0;
+            width: 100%;
+        }
+        
+        .love-counter {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px dashed #FF1493;
+        }
+        
+        .counter-display {
+            font-size: 3.5rem;
+            color: #FFD700;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .love-btn {
+            background: none;
+            border: 2px solid #FF1493;
+            color: white;
+            font-size: 2rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .love-btn:hover {
+            background: #FF1493;
+            transform: scale(1.1);
+        }
+        
+        .secret-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+        
+        .secret-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .secret-content {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: #FFD700;
+            display: none;
+        }
+        
+        .secret-content.show {
+            display: block;
+        }
+        
+        .gallery-section {
+            margin-bottom: 25px;
+        }
+        
+        .gallery-section h3 {
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #FF1493, #FFD700);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .countdown {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 2px solid #FFD700;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            color: white;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 20, 147, 0.3);
+            padding: 10px;
+            border-radius: 15px;
+            min-width: 70px;
+        }
+        
+        .countdown-item .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .quiz-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .quiz-question {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .quiz-option.selected {
+            background: #FF1493;
+            border-color: #FFD700;
+        }
+        
+        .quiz-feedback {
+            text-align: center;
+            color: #FFD700;
+            min-height: 30px;
+        }
+        
+        .love-letter {
+            background: rgba(255, 240, 245, 0.9);
+            border-radius: 30px 30px 30px 5px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #FF1493;
+        }
+        
+        .letter-content {
+            color: #333;
+            line-height: 1.8;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .love-meter {
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #FFD700;
+        }
+        
+        .love-meter input {
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            width: 40%;
+            margin: 5px;
+        }
+        
+        .meter-btn {
+            background: linear-gradient(45deg, #FF1493, #FF4500);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        #loveResult {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 2rem;
+            color: #FFD700;
+        }
+        
+        .message-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .message-box textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid #FF1493;
+            min-height: 100px;
+        }
+        
+        .send-btn {
+            background: #FF1493;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .memory-game {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .memory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .memory-btn {
+            background: rgba(255,20,147,0.5);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            cursor: pointer;
+        }
+        
+        #memoryResult {
+            text-align: center;
+            color: #FFD700;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+        
+        .random-quote {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .quote-text {
+            color: white;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .quote-btn {
+            background: #FF1493;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        .playlist {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .playlist select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            background: #FF1493;
+            color: white;
+            border: none;
+            margin: 10px 0;
+        }
+        
+        .hanging-man {
+            background: rgba(0,0,0,0.3);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .hanging-emoji {
+            font-size: 4rem;
+            animation: swing 3s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+        
+        .progress-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF1493, #FFD700);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .compatibility {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .compatibility-item {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            margin: 10px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0 20px 0;
+        }
+        
+        .action-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #FF1493;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            border: 3px solid white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .hashtag {
+            background: #FF1493;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- BACKGROUND FLOATING HEARTS -->
+    <div class="bg-hearts" id="bgHearts"></div>
+    
+    <!-- AUDIO -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://archive.org/download/sayang_202602/ssstik.io_1771017361889.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="audio-control" onclick="toggleAudio()" id="audioBtn">
+        🔊
+    </div>
+    
+    <!-- POPUP MESSAGE -->
+    <div class="popup-message" id="popupMessage">
+        <div class="popup-content">❤️ SELAMAT VALENTINE ❤️</div>
+        <div style="font-size:1.3rem; margin-bottom:20px;">Semoga hari ini spesial!</div>
+        <button class="popup-close" onclick="closePopup()">Tutup</button>
+    </div>
+    
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>💝 BUCIN VALENTINE 💝</h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+        
+        <!-- PROFILE -->
+        <div class="profile">
+            <div class="profile-pic">👑</div>
+            <div class="profile-info">
+                <div class="name">@1👑</div>
+                <div class="username">Untuk kamu yang spesial</div>
+                <div class="status">❤️ Online · Sedang bucin</div>
+            </div>
+        </div>
+        
+        <!-- ===== FOTO UTAMA (LINK LU) ===== -->
+        <div class="foto-utama-section">
+            <div class="foto-utama" onclick="showPopup()">
+                <img src="https://i.ibb.co/hx1wxhR6/IMG-20260210-WA0049.jpg" alt="Foto Valentine" onerror="this.onerror=null; this.src='https://via.placeholder.com/500x500?text=Foto+Gagal+Load';">
+            </div>
+            <div class="foto-caption">
+                ❤️ Klik fotonya buat kejutan! ❤️
+            </div>
+        </div>
+        
+        <!-- ===== FITUR BARU: TOMBOL WA DAN SHARE ===== -->
+        <div class="fitur-baru-section">
+            <!-- Tombol Kirim WA Otomatis -->
+            <button class="btn-wa" onclick="kirimWA()">
+                <span>📱</span> KIRIM KE WHATSAPP
+            </button>
+            
+            <!-- Tombol Share ke Story -->
+            <button class="btn-wa btn-wa-share" onclick="shareStory()">
+                <span>📲</span> BAGIKAN KE STORY
+            </button>
+            
+            <!-- Tombol Download Foto -->
+            <button class="btn-download" onclick="downloadFoto()">
+                <span>⬇️</span> DOWNLOAD FOTO
+            </button>
+            
+            <!-- Tombol Kejutan -->
+            <button class="btn-secondary" onclick="showPopup()">
+                <span>🎁</span> BUKA KEJUTAN
+            </button>
+        </div>
+        
+        <!-- QR CODE VIRTUAL -->
+        <div class="qr-section">
+            <div class="qr-code" onclick="showPopup()">
+                ❤️
+            </div>
+            <div style="color:#FF1493; font-weight:bold;">Scan QR untuk buka website</div>
+        </div>
+        
+        <!-- FITUR 1: TYPING EFFECT -->
+        <div class="typing-section">
+            <div class="typing-label">✍️ Dia lagi ngetik...</div>
+            <div class="typing-text" id="typingText"></div>
+            <span class="typing-cursor"></span>
+        </div>
+        
+        <button class="change-text-btn" onclick="changeBucinText()">
+            🔄 Ganti Kata Bucin
+        </button>
+        
+        <!-- FITUR 2: LOVE COUNTER -->
+        <div class="love-counter">
+            <h3 style="color:white;">💞 LOVE COUNTER 💞</h3>
+            <div class="counter-display" id="loveCount">0</div>
+            <button class="love-btn" onclick="addLove()">❤️</button>
+            <div style="color:white; margin-top:10px;">Klik hati buat nambah cinta</div>
+        </div>
+        
+        <!-- FITUR 3: SECRET MESSAGE -->
+        <div class="secret-section" onclick="toggleSecret()">
+            <div class="secret-title">
+                <span class="secret-icon">💌</span>
+                <span>Pesan Rahasia (Klik!)</span>
+            </div>
+            <div class="secret-content" id="secretMessage">
+                Aku sayang banget sama kamu! ❤️<br>
+                Maaf kalo aku belum sempurna.<br>
+                Tapi cintaku tulus banget!<br>
+                Happy Valentine's Day, @1👑
+            </div>
+        </div>
+        
+        <!-- FITUR 4: GALERI FOTO -->
+        <div class="gallery-section">
+            <h3>📸 GALERI KENANGAN</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="showPhoto(1)">❤️1</div>
+                <div class="gallery-item" onclick="showPhoto(2)">❤️2</div>
+                <div class="gallery-item" onclick="showPhoto(3)">❤️3</div>
+                <div class="gallery-item" onclick="showPhoto(4)">❤️4</div>
+                <div class="gallery-item" onclick="showPhoto(5)">❤️5</div>
+                <div class="gallery-item" onclick="showPhoto(6)">❤️6</div>
+            </div>
+        </div>
+        
+        <!-- FITUR 5: COUNTDOWN -->
+        <div class="countdown">
+            <h3>⏳ COUNTDOWN VALENTINE ⏳</h3>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Hari</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Jam</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Menit</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Detik</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FITUR 6: QUIZ -->
+        <div class="quiz-section">
+            <h3 style="color:white; text-align:center;">📝 QUIZ: Seberapa kenal kamu?</h3>
+            <div class="quiz-question" id="quizQuestion">Warna favorit doi?</div>
+            <div class="quiz-options" id="quizOptions">
+                <div class="quiz-option" onclick="selectQuiz(this, 'merah')">Merah</div>
+                <div class="quiz-option" onclick="selectQuiz(this, 'biru')">Biru</div>
+                <div class="quiz-option" onclick="selectQuiz(this, 'pink')">Pink</div>
+                <div class="quiz-option" onclick="selectQuiz(this, 'ungu')">Ungu</div>
+            </div>
+            <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+        
+        <!-- FITUR 7: SURAT CINTA -->
+        <div class="love-letter">
+            <h3 style="color:#FF1493;">📜 SURAT CINTA DIGITAL</h3>
+            <div class="letter-content">
+                <p>Sayangku @1👑,</p>
+                <p>Hari Valentine ini aku cuma mau bilang kalo kamu adalah alasan aku tersenyum setiap hari. Mungkin aku bukan yang terbaik, tapi aku akan selalu berusaha jadi yang terbaik buat kamu.</p>
+                <p>I love you more than anything! ❤️</p>
+                <p>From: @1👑 yang lain</p>
+            </div>
+        </div>
+        
+        <!-- FITUR 8: LOVE METER -->
+        <div class="love-meter">
+            <h3 style="color:white; text-align:center;">💕 LOVE METER 💕</h3>
+            <div style="text-align:center;">
+                <input type="text" id="name1" placeholder="Nama lu" value="Aku">
+                <input type="text" id="name2" placeholder="Nama doi" value="Kamu">
+            </div>
+            <button class="meter-btn" onclick="calculateLove()">Hitung Kecocokan</button>
+            <div id="loveResult"></div>
+        </div>
+        
+        <!-- FITUR 9: KOTAK PESAN -->
+        <div class="message-box">
+            <h3 style="color:white; text-align:center;">💌 TULIS PESAN BUAT DOI</h3>
+            <textarea id="userMessage" placeholder="Tulis pesan cinta lu di sini..."></textarea>
+            <button class="send-btn" onclick="sendMessage()">KIRIM PESAN 💘</button>
+            <div id="messageStatus" style="color:#FFD700; text-align:center; margin-top:10px;"></div>
+        </div>
+        
+        <!-- FITUR 10: MEMORY GAME -->
+        <div class="memory-game">
+            <h3 style="color:white; text-align:center;">🧩 MEMORY GAME</h3>
+            <p style="color:white; text-align:center;">Ingat tanggal spesial?</p>
+            <div class="memory-grid">
+                <button class="memory-btn" onclick="checkMemory('first')">Pertama ketemu</button>
+                <button class="memory-btn" onclick="checkMemory('kiss')">Pertama cium</button>
+                <button class="memory-btn" onclick="checkMemory('date')">Pertama kencan</button>
+                <button class="memory-btn" onclick="checkMemory('gift')">Hadiah pertama</button>
+            </div>
+            <div id="memoryResult"></div>
+        </div>
+        
+        <!-- FITUR 11: RANDOM LOVE QUOTE -->
+        <div class="random-quote">
+            <h3 style="color:white; margin-bottom:15px;">💬 RANDOM LOVE QUOTE</h3>
+            <div class="quote-text" id="quoteDisplay">"Cinta itu buta, tapi sama kamu aku rela buta selamanya."</div>
+            <button class="quote-btn" onclick="randomQuote()">Quote Lainnya ❤️</button>
+        </div>
+        
+        <!-- FITUR 12: LOVE PLAYLIST -->
+        <div class="playlist">
+            <h3 style="color:white; text-align:center;">🎵 LOVE PLAYLIST</h3>
+            <select id="musicSelector" onchange="changeMusic()">
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3">Musik Romantis 1</option>
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3">Musik Romantis 2</option>
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Musik Santai</option>
+                <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">Musik Semangat</option>
+            </select>
+            <p style="color:white; text-align:center; font-size:0.9rem;">Pilih musik sesuai suasana hati</p>
+        </div>
+        
+        <!-- FITUR 13: HANGING MAN -->
+        <div class="hanging-man">
+            <h3 style="color:white; margin-bottom:10px;">🪢 GANTUNGAN BUCIN</h3>
+            <div class="hanging-emoji" onclick="createFloatingHeart()">🫂❤️</div>
+            <p style="color:white; font-size:0.9rem; margin-top:10px;">Klik emoji buat efek hati</p>
+        </div>
+        
+        <!-- FITUR 14: LOVE PROGRESS BAR -->
+        <div class="progress-section">
+            <h3 style="color:white; text-align:center;">📊 LOVE PROGRESS</h3>
+            <div style="color:white; display:flex; justify-content:space-between;">
+                <span>Love Level:</span>
+                <span id="lovePercentage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="loveProgress" style="width:0%"></div>
+            </div>
+            <button class="quote-btn" onclick="increaseProgress()" style="width:100%; margin-top:10px;">Tambah Cinta +10%</button>
+        </div>
+        
+        <!-- FITUR 15: COMPATIBILITY TEST -->
+        <div class="compatibility">
+            <h3 style="color:white; text-align:center;">🔮 COMPATIBILITY TEST</h3>
+            <div class="compatibility-item">
+                <span>Kecocokan Zodiak:</span>
+                <span id="zodiac">85%</span>
+            </div>
+            <div class="compatibility-item">
+                <span>Kecocokan Nama:</span>
+                <span id="nameCompat">92%</span>
+            </div>
+            <div class="compatibility-item">
+                <span>Kecocokan Hobi:</span>
+                <span id="hobby">78%</span>
+            </div>
+            <button class="quote-btn" onclick="randomCompatibility()" style="width:100%; margin-top:10px;">Test Ulang 🔄</button>
+        </div>
+        
+        <!-- HASHTAGS -->
+        <div class="hashtags">
+            <span class="hashtag">#bucin</span>
+            <span class="hashtag">#valentinesday</span>
+            <span class="hashtag">#fyp</span>
+            <span class="hashtag">#4u</span>
+            <span class="hashtag">#html</span>
+            <span class="hashtag">#love</span>
+            <span class="hashtag">#couple</span>
+        </div>
+        
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <button class="action-btn" onclick="shareAction('like')">❤️</button>
+            <button class="action-btn" onclick="shareAction('comment')">💬</button>
+            <button class="action-btn" onclick="shareAction('share')">🔄</button>
+            <button class="action-btn" onclick="shareAction('send')">📤</button>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <span>htmlku | Happy Valentine's Day | </span>
+            <a href="#" onclick="playOriginalSound()">🌙 suara asli - HANZ GPT</a>
+        </div>
+    </div>
+    
+    <script>
+        // ========== DATA BUCIN TEXTS ==========
+        const bucinTexts = [
+            "Aku nggak butuh superhero, aku cuma butuh kamu.❤️",
+            "Kamu itu kayak kopi, pahit tapi bikin nagih. ☕",
+            "Kalau cinta itu buta, aku rela buta selamanya buat kamu.",
+            "Aku sayang kamu dari dulu, sekarang, dan selamanya.",
+            "Kamu adalah alasan aku bangun setiap pagi. 🌅",
+            "Cinta aku ke kamu tuh kayak utang, nggak ada habis-habisnya.",
+            "Aku rela jadi badut asal bisa bikin kamu senyum. 🤡❤️",
+            "Kamu itu kayak wi-fi, kalau konek rasanya seneng banget!",
+            "Aku nggak jago matematika, tapi kalau hitung hari sama kamu, aku jago.",
+            "Kamu itu bikin hati aku melting kayak es krim kena matahari. 🍦",
+            "Aku cinta kamu lebih dari boba. Dan itu banyak banget!",
+            "Kalau kamu jadi soal, aku mau jadi jawabannya.",
+            "Aku rela antri panjang asal bisa dapat kamu.",
+            "Kamu itu seperti puzzle, susah dicari tapi pas ketemu jadi lengkap.",
+            "Aku sayang kamu sampai jungkir balik dunia.",
+            "Cinta aku ke kamu tuh kayak sinyal, full terus.",
+            "Kamu itu rumah, tempat aku pulang selalu.",
+            "Aku nggak butuh harta, aku cuma butuh kamu.",
+            "Kamu adalah chapter terbaik dalam hidupku.",
+            "I love you 3000! ❤️"
+        ];
+        
+        let currentBucinIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        // ========== TYPING EFFECT ==========
+        function typeEffect() {
+            const typingElement = document.getElementById('typingText');
+            const currentText = bucinTexts[currentBucinIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 3000);
+                return;
+            }
+            
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentBucinIndex = (currentBucinIndex + 1) % bucinTexts.length;
+                setTimeout(typeEffect, 500);
+                return;
+            }
+            
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeEffect, speed);
+        }
+        
+        function changeBucinText() {
+            currentBucinIndex = (currentBucinIndex + 1) % bucinTexts.length;
+            document.getElementById('typingText').textContent = bucinTexts[currentBucinIndex];
+        }
+        
+        // ========== LOVE COUNTER ==========
+        let loveCount = 0;
+        
+        function addLove() {
+            loveCount++;
+            document.getElementById('loveCount').textContent = loveCount;
+            createFloatingHeart();
+        }
+        
+        // ========== FLOATING HEARTS ==========
+        function createFloatingHeart() {
+            const bg = document.getElementById('bgHearts');
+            for (let i = 0; i < 3; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.innerHTML = ['❤️', '💖', '💘', '💝', '💕'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                bg.appendChild(heart);
+                setTimeout(() => heart.remove(), 15000);
+            }
+        }
+        
+        // ========== SECRET MESSAGE ==========
+        function toggleSecret() {
+            document.getElementById('secretMessage').classList.toggle('show');
+        }
+        
+        // ========== GALLERY ==========
+        function showPhoto(num) {
+            alert(`Foto kenangan ke-${num} ❤️\n(Ganti dengan foto asli lu ya!)`);
+            createFloatingHeart();
+        }
+        
+        // ========== COUNTDOWN ==========
+        function updateCountdown() {
+            const valentineDate = new Date('February 14, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = valentineDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // ========== QUIZ ==========
+        let quizAnswered = false;
+        
+        function selectQuiz(element, answer) {
+            if (quizAnswered) {
+                document.getElementById('quizFeedback').textContent = 'Udah dijawab tadi!';
+                return;
+            }
+            
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            if (answer === 'pink') {
+                document.getElementById('quizFeedback').textContent = '✅ Benar! Kamu kenal banget! ❤️';
+                addLove();
+            } else {
+                document.getElementById('quizFeedback').textContent = '❌ Salah! Warna favoritnya Pink!';
+            }
+            quizAnswered = true;
+        }
+        
+        // ========== LOVE METER ==========
+        function calculateLove() {
+            const name1 = document.getElementById('name1').value || 'Aku';
+            const name2 = document.getElementById('name2').value || 'Kamu';
+            const percentage = Math.floor(Math.random() * 41) + 60;
+            
+            let message = '';
+            if (percentage >= 90) message = '💞 Jodoh banget!';
+            else if (percentage >= 80) message = '💖 Cocok!';
+            else if (percentage >= 70) message = '❤️ Lumayan cocok';
+            else message = '💔 Coba lagi';
+            
+            document.getElementById('loveResult').innerHTML = `${name1} ❤️ ${name2} = ${percentage}%<br><small>${message}</small>`;
+            for(let i=0; i<5; i++) setTimeout(createFloatingHeart, i*100);
+        }
+        
+        // ========== KOTAK PESAN ==========
+        function sendMessage() {
+            const msg = document.getElementById('userMessage').value;
+            if(msg.trim() === '') {
+                document.getElementById('messageStatus').innerHTML = '❌ Tulis dulu pesannya!';
+                return;
+            }
+            document.getElementById('messageStatus').innerHTML = '✅ Pesan terkirim! ❤️';
+            document.getElementById('userMessage').value = '';
+            createFloatingHeart();
+        }
+        
+        // ========== MEMORY GAME ==========
+        function checkMemory(type) {
+            const results = {
+                first: '14 Februari 2024',
+                kiss: '14 Februari 2025',
+                date: 'Setiap hari',
+                gift: 'Hati ini'
+            };
+            document.getElementById('memoryResult').innerHTML = `📅 ${results[type]} ❤️`;
+            createFloatingHeart();
+        }
+        
+        // ========== RANDOM QUOTE ==========
+        const quotes = [
+            '"Cinta itu buta, tapi sama kamu aku rela buta selamanya."',
+            '"Kamu adalah alasan aku tersenyum hari ini."',
+            '"Aku mencintaimu lebih dari kata-kata."',
+            '"Bersamamu adalah rumah bagiku."',
+            '"Kamu adalah mimpi yang jadi kenyataan."',
+            '"Cinta kita seperti bintang, bersinar selamanya."'
+        ];
+        
+        function randomQuote() {
+            const random = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quoteDisplay').textContent = quotes[random];
+            createFloatingHeart();
+        }
+        
+        // ========== MULTIPLE MUSIC ==========
+        function changeMusic() {
+            const selector = document.getElementById('musicSelector');
+            const audio = document.getElementById('bgMusic');
+            audio.src = selector.value;
+            audio.play().catch(() => {});
+            isPlaying = true;
+            document.getElementById('audioBtn').innerHTML = '🔊';
+        }
+        
+        // ========== PROGRESS BAR ==========
+        let loveProgress = 0;
+        
+        function increaseProgress() {
+            loveProgress = Math.min(loveProgress + 10, 100);
+            document.getElementById('loveProgress').style.width = loveProgress + '%';
+            document.getElementById('lovePercentage').textContent = loveProgress + '%';
+            createFloatingHeart();
+        }
+        
+        // ========== COMPATIBILITY RANDOM ==========
+        function randomCompatibility() {
+            document.getElementById('zodiac').textContent = Math.floor(Math.random() * 31) + 70 + '%';
+            document.getElementById('nameCompat').textContent = Math.floor(Math.random() * 31) + 70 + '%';
+            document.getElementById('hobby').textContent = Math.floor(Math.random() * 31) + 70 + '%';
+            createFloatingHeart();
+        }
+        
+        // ========== ACTION BUTTONS ==========
+        function shareAction(type) {
+            const messages = {
+                like: '❤️ Kamu like postingan ini!',
+                comment: '💬 Tulis komentar manis...',
+                share: '🔄 Postingan siap di repost!',
+                send: '📤 Dikirim ke doi via DM!'
+            };
+            alert(messages[type]);
+            createFloatingHeart();
+        }
+        
+        // ========== AUDIO CONTROL ==========
+        let isPlaying = false;
+        const audio = document.getElementById('bgMusic');
+        const audioBtn = document.getElementById('audioBtn');
+        
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                audioBtn.innerHTML = '🔇';
+            } else {
+                audio.play().catch(() => {
+                    alert('Klik layar dulu buat aktifin audio!');
+                });
+                audioBtn.innerHTML = '🔊';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function playOriginalSound() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3";
+            audio.play().catch(() => {});
+            isPlaying = true;
+            audioBtn.innerHTML = '🔊';
+        }
+        
+        // ========== CURRENT DATE ==========
+        function updateDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('id-ID', options);
+        }
+        
+        // ========== FITUR BARU: KIRIM WA ==========
+        function kirimWA() {
+            const pesan = encodeURIComponent("Halo sayang! ❤️ Aku buatkan website spesial Valentine buat kamu. Cek link ini: " + window.location.href);
+            window.open(`https://wa.me/?text=${pesan}`, '_blank');
+            createFloatingHeart();
+            for(let i=0; i<10; i++) setTimeout(createFloatingHeart, i*100);
+        }
+        
+        // ========== SHARE STORY ==========
+        function shareStory() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Valentine Spesial',
+                    text: 'Lihat website Valentine yang aku buat! ❤️',
+                    url: window.location.href
+                }).catch(() => {
+                    alert('Gagal share, coba manual ya!');
+                });
+            } else {
+                alert('Copy link ini: ' + window.location.href);
+            }
+            createFloatingHeart();
+        }
+        
+        // ========== DOWNLOAD FOTO ==========
+        function downloadFoto() {
+            const link = document.createElement('a');
+            link.href = 'https://i.ibb.co/hx1wxhR6/IMG-20260210-WA0049.jpg';
+            link.download = 'foto-valentine.jpg';
+            link.click();
+            createFloatingHeart();
+        }
+        
+        // ========== POPUP ==========
+        function showPopup() {
+            document.getElementById('popupMessage').classList.add('show');
+            createFloatingHeart();
+            for(let i=0; i<15; i++) setTimeout(createFloatingHeart, i*50);
+        }
+        
+        function closePopup() {
+            document.getElementById('popupMessage').classList.remove('show');
+        }
+        
+        // ========== INIT ==========
+        window.onload = function() {
+            setTimeout(typeEffect, 1000);
+            document.getElementById('typingText').textContent = bucinTexts[0];
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            updateDate();
+            createFloatingHeart();
+            
+            // Auto play attempt
+            document.body.addEventListener('click', function initAudio() {
+                if (!isPlaying) {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        audioBtn.innerHTML = '🔊';
+                    }).catch(() => {});
+                }
+            }, { once: true });
+        };
+    </script>
+</body>
+  </html>
